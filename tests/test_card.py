@@ -37,5 +37,12 @@ class TestCard(unittest.TestCase):
         self.assertEqual(str(self.king_of_diamonds), '♦️ K')
         print(f"Tested string representation of {self.king_of_diamonds}")
 
+    def test_different_color(self):
+        self.assertTrue(Card.different_color(Suit.HEARTS, Suit.SPADES))
+        self.assertTrue(Card.different_color(Suit.DIAMONDS, Suit.CLUBS))
+        self.assertFalse(Card.different_color(Suit.HEARTS, Suit.DIAMONDS))
+        self.assertFalse(Card.different_color(Suit.SPADES, Suit.CLUBS))
+        print("Tested different_color method")
+
 if __name__ == '__main__':
     unittest.main()
