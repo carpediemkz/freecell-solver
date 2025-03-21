@@ -8,8 +8,10 @@ from game.card import Suit
 
 def main():
     # Initialize the game board
-    board = Board()
     # Example suits and ranks for the game
+    board = Board()
+    foundation = []
+    free_cells = [Card(suit=i + 1, rank=0) for i in range(4)]
     suits = [
         [3, 3, 1, 1, 3, 2, 4],
         [1, 3, 4, 1, 2, 2, 3],
@@ -30,10 +32,19 @@ def main():
         [10, 4, 11, 8, 2, 9],
         [11, 9, 9, 10, 12, 7],
     ]
-    board.initialize_board(suits, ranks)
+
+    board.initialize_board(
+        foundation=foundation, free_cells=free_cells, suits=suits, ranks=ranks
+    )
 
     # Display the initial state of the board
     board.display_board()
+
+    #######################################################
+
+    # print(board.can_move_column(0, 2, 1))
+
+    #######################################################
 
     # # Initialize the solver
     # solver = Solver(board)
