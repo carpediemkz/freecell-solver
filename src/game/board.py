@@ -1,5 +1,6 @@
 from game.card import Card
 from game.card import Suit
+import copy
 
 
 class Board:
@@ -22,8 +23,8 @@ class Board:
         self.max_cards_to_move = (1 + empty_foundation) * (2**self.empty_colums)
 
     def initialize_board(self, foundation, free_cells, suits, ranks):
-        self.foundation = foundation
-        self.free_cells = free_cells
+        self.foundation = copy.deepcopy(foundation)
+        self.free_cells = copy.deepcopy(free_cells)
         # Manually deal the deck to the columns
         for i in range(8):
             size = len(suits[i])

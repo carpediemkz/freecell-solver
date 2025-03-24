@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../s
 
 from game.board import Board
 from game.card import Card
+from constants import *
 
 
 class TestBoard(unittest.TestCase):
@@ -37,7 +38,7 @@ class TestBoard(unittest.TestCase):
         ]
 
         self.board.initialize_board(
-            foundation=foundation, free_cells=free_cells, suits=suits, ranks=ranks
+            foundation=FOUNDATION, free_cells=FREE_CELLS, suits=SUITS, ranks=RANKS
         )
         self.should_display_board = False
         self.board.display_board()
