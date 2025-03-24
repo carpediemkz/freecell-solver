@@ -1,25 +1,48 @@
+import sys
+import os
 import unittest
-from src.game.solver import Solver
+
+# Add the src directory to the PYTHONPATH
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
+
+from game.board import Board
+from game.solver import Solver, MoveType, Move
+from constants import *
+
 
 class TestSolver(unittest.TestCase):
 
     def setUp(self):
-        self.solver = Solver()
+        board = Board()
+        board.initialize_board(
+            foundation=FOUNDATION, free_cells=FREE_CELLS, suits=SUITS, ranks=RANKS
+        )
+        self.solver = Solver(board)
 
     def test_find_solution(self):
-        # Test case for finding a solution to a FreeCell game scenario
-        initial_state = [...]  # Define the initial state of the game
-        expected_solution = [...]  # Define the expected solution
-        solution = self.solver.find_solution(initial_state)
-        self.assertEqual(solution, expected_solution)
+        pass
 
     def test_apply_move(self):
-        # Test case for applying a move in the FreeCell game
-        initial_state = [...]  # Define the initial state of the game
-        move = [...]  # Define a move to apply
-        expected_state = [...]  # Define the expected state after the move
-        self.solver.apply_move(initial_state, move)
-        self.assertEqual(initial_state, expected_state)
+        pass
 
-if __name__ == '__main__':
+    def test_is_solved(self):
+        pass
+
+    def test_get_possible_moves(self):
+        possible_moves = self.solver.get_possible_moves()
+        self.assertEqual(len(possible_moves), 15)
+        free, foundation, column = 0, 0, 0
+        for move in possible_moves:
+            if move.move_type == MoveType.FREE:
+                free += 1
+            elif move.move_type == MoveType.FOUNDATION:
+                foundation += 1
+            elif move.move_type == MoveType.COLUMN:
+                column += 1
+        self.assertEqual(free, 4)
+        self.assertEqual(foundation, 8)
+        self.assertEqual(column, 3)
+
+
+if __name__ == "__main__":
     unittest.main()

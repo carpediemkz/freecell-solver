@@ -155,6 +155,26 @@ class TestBoard(unittest.TestCase):
         # self.display_board()
         # self.should_display_board = True
 
+    def test_is_consecutive(self):
+        self.assertTrue(self.board.is_consecutive(2, 1))
+        self.assertFalse(self.board.is_consecutive(2, 2))
+
+        self.board.columns[2] = [
+            Card(suit=2, rank=12),
+            Card(suit=4, rank=1),
+            Card(suit=3, rank=4),
+            Card(suit=2, rank=9),
+            Card(suit=1, rank=8),
+            Card(suit=2, rank=7),
+            Card(suit=1, rank=6),
+        ]
+
+        self.assertTrue(self.board.is_consecutive(2, 4))
+        self.assertTrue(self.board.is_consecutive(2, 1))
+        self.assertTrue(self.board.is_consecutive(2, 2))
+        self.assertTrue(self.board.is_consecutive(2, 3))
+        self.assertFalse(self.board.is_consecutive(2, 5))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,4 @@
-from game.card import Card
-from game.card import Suit
+from game.card import Card, Suit
 import copy
 
 
@@ -168,4 +167,18 @@ class Board:
         # Deal with the case of moving between columns
         card_from = self.columns[from_column][-cards_to_move]
         card_to = self.columns[to_column][-1] if self.columns[to_column] else None
-        return self.can_move_card(card_to, card_from)
+        return self.is_consecutive(from_column, cards_to_move) and self.can_move_card(
+            card_to, card_from
+        )
+
+    def is_consecutive(self, column, cards_to_move):
+        if cards_to_move <= 1:
+            return True
+
+        cards = self.columns[column][-cards_to_move:]
+
+        for i in range(-1, -cards_to_move, -1):
+            if not self.can_move_card(cards[i - 1], cards[i]):
+                return False
+
+        return True

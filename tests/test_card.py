@@ -3,14 +3,15 @@ import os
 import unittest
 
 # Add the src directory to the PYTHONPATH
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 from game.card import Card, Suit
+
 
 class TestCard(unittest.TestCase):
 
     def setUp(self):
-        self.a_of_hearts = Card(suit=2, rank='A')
+        self.a_of_hearts = Card(suit=2, rank="A")
         self.seven_of_spades = Card(suit=1, rank=7)
         self.king_of_diamonds = Card(suit=4, rank=13)
 
@@ -28,13 +29,13 @@ class TestCard(unittest.TestCase):
         print(f"Tested {self.king_of_diamonds} properties")
 
     def test_card_string_representation(self):
-        self.assertEqual(str(self.a_of_hearts), '♥️ A')
+        self.assertEqual(str(self.a_of_hearts), "♥️ A")
         print(f"Tested string representation of {self.a_of_hearts}")
 
-        self.assertEqual(str(self.seven_of_spades), '♠️ 7')
+        self.assertEqual(str(self.seven_of_spades), "♠️ 7")
         print(f"Tested string representation of {self.seven_of_spades}")
 
-        self.assertEqual(str(self.king_of_diamonds), '♦️ K')
+        self.assertEqual(str(self.king_of_diamonds), "♦️ K")
         print(f"Tested string representation of {self.king_of_diamonds}")
 
     def test_different_color(self):
@@ -44,5 +45,6 @@ class TestCard(unittest.TestCase):
         self.assertFalse(Card.different_color(Suit.SPADES, Suit.CLUBS))
         print("Tested different_color method")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

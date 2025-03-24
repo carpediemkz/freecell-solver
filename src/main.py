@@ -18,14 +18,13 @@ def main():
     # Display the initial state of the board
     board.display_board()
 
-    #######################################################
+    # Initialize the solver
+    solver = Solver(board)
+    possible_moves = solver.get_possible_moves()
+    for moves in possible_moves:
+        print(moves, end="\n")
 
-    # print(board.can_move_column(0, 2, 1))
-
-    #######################################################
-
-    # # Initialize the solver
-    # solver = Solver(board)
+    print(len(possible_moves))
 
     # # Start the solving process
     # if solver.find_solution():
