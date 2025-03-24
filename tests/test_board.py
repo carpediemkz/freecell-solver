@@ -14,34 +14,11 @@ class TestBoard(unittest.TestCase):
 
     def setUp(self):
         self.board = Board()
-        foundation = []
-        free_cells = [Card(suit=i + 1, rank=0) for i in range(4)]
-        suits = [
-            [3, 3, 1, 1, 3, 2, 4],
-            [1, 3, 4, 1, 2, 2, 3],
-            [3, 3, 1, 1, 2, 4, 3],
-            [4, 4, 4, 4, 2, 4, 2],
-            [1, 2, 3, 3, 4, 4],
-            [1, 3, 2, 3, 2, 1],
-            [2, 2, 1, 4, 2, 2],
-            [4, 1, 4, 1, 3, 1],
-        ]
-        ranks = [
-            [3, 6, 4, 12, 2, 1, 3],
-            [3, 10, 12, 2, 3, 13, 1],
-            [7, 9, 8, 6, 12, 1, 4],
-            [6, 2, 7, 4, 6, 13, 8],
-            [1, 11, 13, 8, 10, 5],
-            [5, 5, 7, 11, 5, 13],
-            [10, 4, 11, 8, 2, 9],
-            [11, 9, 9, 10, 12, 7],
-        ]
-
         self.board.initialize_board(
             foundation=FOUNDATION, free_cells=FREE_CELLS, suits=SUITS, ranks=RANKS
         )
         self.should_display_board = False
-        self.board.display_board()
+        self.display_board()
 
     def display_board(self):
         if self.should_display_board:
@@ -122,7 +99,7 @@ class TestBoard(unittest.TestCase):
         self.assertTrue(self.board.free_card(Card(suit=3, rank=1)))
         self.assertTrue(self.board.move_cards(2, 4, 5))
 
-        self.should_display_board = True
+        self.should_display_board = False
         self.display_board()
 
     def test_can_foundation(self):
