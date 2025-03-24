@@ -1,11 +1,21 @@
 from enum import Enum
 
+suit_emojis = {
+    "Spades": "♤",
+    "Hearts": "♡",
+    "Clubs": "♧",
+    "Diamonds": "♢",
+}
+
 
 class Suit(Enum):
     CLUBS = "Clubs"
     HEARTS = "Hearts"
     SPADES = "Spades"
     DIAMONDS = "Diamonds"
+
+    def __str__(self):
+        return suit_emojis.get(self.value, self.value)
 
 
 suit_map = {
@@ -47,16 +57,11 @@ class Card:
 
     def __str__(self):
         rank_map = {0: " ", 1: "A", 11: "J", 12: "Q", 13: "K"}
-        suit_emojis = {
-            "Spades": "♤",
-            "Hearts": "♡",
-            "Clubs": "♧",
-            "Diamonds": "♢",
-        }
+
         if self.rank == 0:
             return " "
         rank_str = rank_map.get(self.rank, str(self.rank))
-        return f"{suit_emojis.get(self.suit.value, self.suit.value)} {rank_str}"
+        return f"{self.suit} {rank_str}"
 
     @staticmethod
     def different_color(suit1, suit2):
