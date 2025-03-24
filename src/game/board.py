@@ -31,30 +31,36 @@ class Board:
                 self.columns[i].append(Card(suit=suits[i][index], rank=ranks[i][index]))
         self.update_board_data()
 
-    def display_board(self):
-        print("\nFree Cells Board Start: ", end="\n")
+    def __str__(self):
+        output = "\nFree Cells Board Start: \n"
         for i in range(4):
             if i < len(self.foundation):
-                print(f"{self.foundation[i]}\t", end="")
+                output += f"{self.foundation[i]}\t"
             else:
-                print(f"{'[ ]'}\t", end="")
+                output += f"{'[ ]'}\t"
         for card in self.free_cells:
             if card.rank == 0:
-                print(f"{'[ ]'}\t", end="")
+                output += f"{'[ ]'}\t"
             else:
-                print(f"{card}\t", end="")
-        print("\n")
+                output += f"{card}\t"
+        output += "\n"
+        output += "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        output += "\n"
         for row in range(self.height):
             for column in range(8):
                 if row < len(self.columns[column]):
                     card = self.columns[column][row]
-                    print(f"{card}\t", end="")
+                    output += f"{card}\t"
                 else:
-                    print(f"{Card(2,0)}\t", end="")
-            print()
-        print("\nFree Cells End: ", end="\n")
-        print(f"Height: {self.height}")
-        print(f"Empty Columns: {self.empty_colums}")
+                    output += f"{Card(2,0)}\t"
+            output += "\n"
+        output += "\nFree Cells End: \n"
+        output += f"Height: {self.height}\n"
+        output += f"Empty Columns: {self.empty_colums}\n"
+        return output
+
+    def display_board(self):
+        print(str(self))
 
     def free_card(self, card):
         # find the card in foundation

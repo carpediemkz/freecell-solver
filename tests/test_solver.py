@@ -17,7 +17,8 @@ class TestSolver(unittest.TestCase):
         board.initialize_board(
             foundation=FOUNDATION, free_cells=FREE_CELLS, suits=SUITS, ranks=RANKS
         )
-        self.solver = Solver(board)
+        self.solver = Solver()
+        self.board = board
 
     def test_find_solution(self):
         pass
@@ -29,8 +30,8 @@ class TestSolver(unittest.TestCase):
         pass
 
     def test_get_possible_moves(self):
-        possible_moves = self.solver.get_possible_moves(self.solver.board)
-        self.solver.board.display_board()
+        possible_moves = self.solver.get_possible_moves(self.board)
+        self.board.display_board()
         self.assertEqual(len(possible_moves), 12)
         free, to_foundation, from_foundation, column = 0, 0, 0, 0
         for move in possible_moves:
@@ -47,10 +48,10 @@ class TestSolver(unittest.TestCase):
         self.assertEqual(from_foundation, 0)
         self.assertEqual(column, 3)
 
-        self.solver.board.foundation.append(Card(2, 12))
-        possible_moves = self.solver.get_possible_moves(self.solver.board)
+        self.board.foundation.append(Card(2, 12))
+        possible_moves = self.solver.get_possible_moves(self.board)
 
-        self.solver.board.display_board()
+        self.board.display_board()
         self.assertEqual(len(possible_moves), 13)
         free, to_foundation, from_foundation, column = 0, 0, 0, 0
         for move in possible_moves:
