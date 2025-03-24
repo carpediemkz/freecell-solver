@@ -37,10 +37,10 @@ class Board:
             if i < len(self.foundation):
                 print(f"{self.foundation[i]}\t", end="")
             else:
-                print(f"{"[ ]"}\t", end="")
+                print(f"{'[ ]'}\t", end="")
         for card in self.free_cells:
             if card.rank == 0:
-                print(f"{"[ ]"}\t", end="")
+                print(f"{'[ ]'}\t", end="")
             else:
                 print(f"{card}\t", end="")
         print("\n")
